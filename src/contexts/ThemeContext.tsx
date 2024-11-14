@@ -42,8 +42,10 @@ export const CustomThemeProvider = ({ children }: { children: ReactNode }): JSX.
 
   const theme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
 
+  const contextValue = useMemo(() => ({ darkMode, toggleTheme }), [darkMode, toggleTheme]);
+
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
+    <ThemeContext.Provider value={contextValue}>
       <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </ThemeContext.Provider>
   );
