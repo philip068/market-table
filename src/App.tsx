@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Typography, AppBar, Toolbar } from '@mui/material';
+import ThemeToggle from './components/ThemeToggle';
+import MarketTable from './components/Market/MarketTable';
+import { useThemeContext } from './contexts/ThemeContext';
 
-function App() {
+const App: React.FC = () => {
+  const { toggleTheme, darkMode } = useThemeContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="xl" sx={{ padding: '24px 0' }}>
+      <AppBar position="static" sx={{ backgroundColor: 'primary.main' }}>
+        <Toolbar>
+          <Typography variant="h1" sx={{ flexGrow: 1, color: 'primary.contrastText' }}>
+            NBA Player Markets
+          </Typography>
+          <ThemeToggle toggleTheme={toggleTheme} darkMode={darkMode} />
+        </Toolbar>
+      </AppBar>
+      <MarketTable />
+    </Container>
   );
-}
+};
 
 export default App;
